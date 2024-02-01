@@ -23,4 +23,35 @@ router.get('/notes', (req, res) => {
     res.json(notes); // .res (response object used to send HTTP responses back to the client), .json(notes)(formats the data in the notes variable as json and sends it as the response body to the client)
   });
 });
+//post end point to add a new note
+router.post('/notes', (req, res) => {
+  //read existing notes (removed the utf8 bc its exessive but included in top portion so I have a reminder incase I deal with a file of another convention type in future)
+  fs.readFile('db/db.json', (err, data) => {
+    if (err) {
+      console.log('error');
+      res.status(500).json({ error: 'Server error' }); //same as line 17
+      return;
+    }
+    // parse existing notes from json
+    const notes = JSON.parse(data);
+
+    //get new notye data from request body
+    const newNote = req.body;
+
+    //add new note to array of existing notes
+    notes.push(newNote);
+
+    // write updated notes back to cb.json
+    fs.writeFile('db/db.json', JSON.stringify(notes), (err) => {
+      if (err) {
+        console.log('error');
+        res.status(500).json({ error: 'Server error' }); //same as line 17
+        return;
+      }
+
+      // send updated notes as a response
+      res.json(notes);
+    });
+  });
+});
 module.exports = router;
