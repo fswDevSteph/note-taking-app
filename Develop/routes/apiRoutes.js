@@ -23,3 +23,4 @@ router.get('/notes', (req, res) => {
     res.json(notes); // .res (response object used to send HTTP responses back to the client), .json(notes)(formats the data in the notes variable as json and sends it as the response body to the client)
   });
 });
+module.exports = router;
