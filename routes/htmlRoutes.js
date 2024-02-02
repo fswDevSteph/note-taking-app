@@ -1,4 +1,4 @@
-// html routes for whats chnaging in the browser
+// html routes for whats chnaging to be displayed in the browser
 
 const path = require('path'); //requires path
 const express = require('express').Router(); // requires express
