@@ -35,3 +35,7 @@ program.use(express.static('public'));
 program.use('/', htmlRoutes);
 // example url: localhost:3000/api/notes
 program.use('/api', apiRoutes);
+//!THIS WAS SUPPOSE TO BRING ME TO THE NOTES PAGE WHEN THE BTN is clicked - UGHHHHHHHHHH!
+program.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'notes.html'))
+});

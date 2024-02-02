@@ -14,6 +14,8 @@ if (window.location.pathname === '/notes') {
   clearBtn = document.querySelector('.clear-btn');
   noteList = document.querySelectorAll('.list-container .list-group');
 }
+//creating click functionality for get started btn
+
 
 // Show an element
 const show = (elem) => {
