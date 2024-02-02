@@ -1,12 +1,15 @@
 // html routes for whats chnaging to be displayed in the browser
 
-const path = require('path'); //requires path
-const express = require('express').Router(); // requires express
+const path = require('path');
+const express = require('express');
+const router = express.Router();
 
-express.get('/notes', (req, res) => {res.sendFile(path.join(__dirname, '../public/notes.html'))} // definite file location of code on the right
-); //left side 
-// star says "lead me home" but it must be placed at the very end bcuz * means anything 
-express.get('*', (req, res) => {res.sendFile(path.join(__dirname, '../public/index.html'))} // where to find in code
-);
+router.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/notes.html'));
+});
 
-module.exports = express;
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+module.exports = router;
