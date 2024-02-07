@@ -54,7 +54,7 @@ const deleteNote = (id) =>
       'Content-Type': 'application/json',
     },
   });
-s;
+
 const renderActiveNote = () => {
   hide(saveNoteBtn);
   hide(clearBtn);
