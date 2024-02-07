@@ -9,8 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
+app.use('/api', apiRoutes); // hey were using api routes
+app.use('/', htmlRoutes); // hey were using html routes
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
