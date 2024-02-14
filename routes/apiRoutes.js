@@ -6,6 +6,7 @@ const router = express.Router(); // middllleware func allows defining routes for
 const fs = require('fs'); // to read and write data to db.json fille
 const util = require('util');
 const readFileUtil = util.promisify(fs.readFile);
+const { v4: uuidv4 } = require('uuid');
 //routes here
 
 //!GET portion of the route is for reading notes from the db.json file
@@ -26,7 +27,7 @@ router.get('/notes', (req, res) => {
     })
     .catch((error) => res.status(500).json(error));
 });
-//!POST /notes: Adds a new note to the db.json file based on the data received in the request body.
+//!POST /notes: Adds a new note to the db.json file based on the data received in the request body. SAVES THE DATA
 router.post('/notes', (req, res) => {
   //read existing notes (removed the utf8 bc its exessive but included in top portion so I have a reminder incase I deal with a file of another convention type in future)
   fs.readFile('db/db.json', (err, data) => {
@@ -41,7 +42,8 @@ router.post('/notes', (req, res) => {
     //get new notye data from request body
     const newNote = req.body;
     console.log(newNote);
-
+    newNote.id = uuidv4(); //adds id key to newNote object
+    console.log(newNote);
     //add new note to array of existing notes
     notes.push(newNote);
 
