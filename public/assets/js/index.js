@@ -5,41 +5,15 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
-//! Using Day.js to make it better
-// // Get the current date using Day.js
-// const currentDate = dayjs();
-// // Get the span element to display the current date
-// const currentDateSpan = document.getElementById('current-date');
-// // Format the date using Day.js
-// const formattedDate = currentDate.format('MMMM DD, YYYY');
-// // Set the formatted date to the span element
-// currentDateSpan.textContent = formattedDate;
-
-// index.js
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Get the current date using Day.js
-  const currentDate = dayjs();
-  // Get the span element to display the current date
-  const currentDateSpan = document.getElementById('current-date');
-  // Format the date using Day.js
-  const formattedDate = currentDate.format('MMMM DD, YYYY');
-  // Set the formatted date to the span element
-  currentDateSpan.textContent = formattedDate;
-
-  // Your other JavaScript code goes here...
-
-  // For example:
-  const noteForm = document.querySelector('.note-form');
-  const noteTitle = document.querySelector('.note-title');
-  const noteText = document.querySelector('.note-textarea');
-  const saveNoteBtn = document.querySelector('.save-note');
-  const newNoteBtn = document.querySelector('.new-note');
-  const noteList = document.getElementById('list-group');
-  const clearBtn = document.querySelector('.clear-btn');
-
-  // Rest of your JavaScript code for handling notes...
-});
+if (window.location.pathname === '/notes') {
+  noteForm = document.querySelector('.note-form');
+  noteTitle = document.querySelector('.note-title');
+  noteText = document.querySelector('.note-textarea');
+  saveNoteBtn = document.querySelector('.save-note');
+  newNoteBtn = document.querySelector('.new-note');
+  clearBtn = document.querySelector('.clear-btn');
+  noteList = document.querySelectorAll('.list-container .list-group');
+}
 
 // Show an element
 const show = (elem) => {
