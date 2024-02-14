@@ -61,8 +61,32 @@ router.post('/notes', (req, res) => {
   });
 });
 
-router.delete('/notes/:id', (req, res) => {
-  console.log(req.params.id);
+router.delete('/notes/:noteid', (req, res) => {
+  console.log(req.params.noteid);
+  fs.readFile('db/db.json', (err, data) => {
+    if (err) {
+      console.log('error');
+      res.status(500).json({ error: 'Server error' }); //same as line 17
+      return;
+    }
+    // parse existing notes from json
+    const notes = JSON.parse(data);
+
+    const filterNotes = notes.filter((note) => {
+      return note.id !== req.params.noteid;
+    });
+
+    fs.writeFile('db/db.json', JSON.stringify(filterNotes), (err) => {
+      if (err) {
+        console.log('error');
+        res.status(500).json({ error: 'Server error' }); //same as line 17
+        return;
+      }
+
+      // send updated notes as a response
+      res.json(notes);
+    });
+  });
 });
 
 module.exports = router;
